@@ -30,10 +30,9 @@ now_date = str(int(now_month)) + "/" + str(int(now_day))
 print("Today is " + now_date)
 now_year = int(str(datetime.datetime.now())[:4])
 
-
-#Version 1: Simple Message 
-@app.route("/api/v1/simple_messege", methods=['POST'])
-def simple_messege():
+#Version 2: Tailer-made Message for different gender 
+@app.route("/api/v2/messege_for_diff_gender", methods=['POST'])
+def messege_for_diff_gender():
     try:
         sql = "SELECT * FROM MEMBER WHERE Date_of_Birth LIKE '%" + now_date + "%\'"
         mycursor = mydb.cursor()
@@ -43,18 +42,26 @@ def simple_messege():
         data = {}
         for row in myresult:
             email = str(row[5])
-            message = {}
-            message["title"] = 'Subject: Happy birthday!'
-            message["content"] = 'Happy birthday, dear ' + str(row[1]) + '!'
 
+            message = {}
+            message["title"] = 'Subject: Happy birthday! '
+            if str(row[3]) == 'Male':
+                message["content"] = 'Happy birthday, dear ' + str(row[1]) + '!\n ' +\
+                'We offer special discount 20% off for the following items: \n ' +\
+                'White Wine, iPhone X'
+
+            else:
+                message["content"] = 'Happy birthday, dear ' + str(row[1]) + '!\n' +\
+                'We offer special discount 50% off for the following items: \n '+\
+                'Cosmetic, LV Handbags'
             msg = Message(
-                subject='Subject: Happy birthday!',
-                recipients=[email],
-                html= json.dumps(message)
+                subject = 'Subject: Happy birthday!',
+                recipients = [email],
+                html = json.dumps(message)
             )
             data[row[0]] = message
             mail.send(msg)
-            
+        
         res = json.dumps(data)
         return res
 
