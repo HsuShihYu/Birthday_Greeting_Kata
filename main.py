@@ -30,37 +30,40 @@ now_date = str(int(now_month)) + "/" + str(int(now_day))
 print("Today is " + now_date)
 now_year = int(str(datetime.datetime.now())[:4])
 
-#Version 2: Tailer-made Message for different gender 
-@app.route("/api/v2/messege_for_diff_gender", methods=['POST'])
-def messege_for_diff_gender():
+#Version 3: Message with an Elder Picture for those whose age is over 49. 
+@app.route("/api/v3/send_elder_person", methods=['POST'])
+def send_elder_person():
     try:
         sql = "SELECT * FROM MEMBER WHERE Date_of_Birth LIKE '%" + now_date + "%\'"
         mycursor = mydb.cursor()
         mycursor.execute(sql)
         myresult = mycursor.fetchall()
 
+
         data = {}
         for row in myresult:
             email = str(row[5])
-
+            bd = str(row[4])
+            bdyear = int(bd[:4])
             message = {}
             message["title"] = 'Subject: Happy birthday! '
-            if str(row[3]) == 'Male':
-                message["content"] = 'Happy birthday, dear ' + str(row[1]) + '!\n ' +\
-                'We offer special discount 20% off for the following items: \n ' +\
-                'White Wine, iPhone X'
+            if now_year - bdyear >= 49:
+                message["content"] = 'Happy birthday, dear `' + str(row[1]) + '`!\n'+\
+                '(A greeting picture here)'
 
             else:
-                message["content"] = 'Happy birthday, dear ' + str(row[1]) + '!\n' +\
-                'We offer special discount 50% off for the following items: \n '+\
-                'Cosmetic, LV Handbags'
+                message["content"] = 'Happy birthday, dear ' + str(row[1]) + '!'
+            
             msg = Message(
-                subject = 'Subject: Happy birthday!',
-                recipients = [email],
-                html = json.dumps(message)
+                subject='Subject: Happy birthday!',
+                recipients=[email],
+                html=json.dumps(message)
             )
-            data[row[0]] = message
+            if now_year - bdyear >= 49:
+                with app.open_resource("greeting_pic.jpg") as fp:
+                    msg.attach("greeting_pic.jpg", "image/jpg", fp.read())
             mail.send(msg)
+            data[row[0]] = message
         
         res = json.dumps(data)
         return res
