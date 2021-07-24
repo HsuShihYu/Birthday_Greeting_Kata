@@ -18,7 +18,7 @@ $ source bgk/bin/activate
 ```
 if you don't
 ```
-$ pip install -r requirements.txt  
+$ pip3 install -r requirements.txt  
 ```
 ### Step2:
 Enter your gmail account and password on main.py  
