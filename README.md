@@ -25,5 +25,7 @@ $ pip install -r requirements.txt
 ```
 
 ### Step2:
+Enter the sender's gmail account and password
+
 
 
