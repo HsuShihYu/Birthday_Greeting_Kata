@@ -25,7 +25,12 @@ $ pip install -r requirements.txt
 ```
 
 ### Step2:
-Enter the sender's gmail account and password
+Enter your(sender) gmail account and password on main.py
+![image](https://github.com/HsuShihYu/Birthday_Greeting_Kata/blob/master/gmail_config.png)  
+
+### Step3:
+Enter your own mysql database (host, user, password, database)  
+
 
 
 
