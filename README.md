@@ -27,7 +27,6 @@ $ pip install -r requirements.txt
 ### Step2:
 Enter your(sender) gmail account and password on main.py  
   
-![image](https://github.com/HsuShihYu/Birthday_Greeting_Kata/blob/master/gmail_config.png) 
 <img src="gmail_config.png" alt="gmail_config" width="50%"/>
 
 ### Step3:
