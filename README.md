@@ -28,7 +28,8 @@ Enter your gmail account and password on main.py
 <img src="gmail_config.png" alt="gmail_config" width="50%"/>
 
 ### Step3:
-Enter your own mysql database (host, user, password, database)  on config.py
+Enter your own mysql database (host, user, password, database)  on config.py  
+
 <img src="mysql_config.png" alt="mysql_config" width="50%"/>  
   
 After the configuration, create the MEMBER table and insert the data from data.csv to mysql & mongodb  
