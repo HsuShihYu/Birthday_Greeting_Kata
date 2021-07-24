@@ -4,16 +4,14 @@ Python3.6, Framework = Flask 2.0.1
 Build 5 versions of Restiful APIs, Each api can send birthday greeting email when today is their birthday.  
 The format of birthday greeting content is json.  
 
-(Extra function: directly send the email to the members when today is their birthday)
+(Extra function: Directly send the mail to the members when today is their birthday)
 
 ## Requriements
 `python 3.6`  
 `mysql 8.0.25`  
 `mongodb 5.0.0`    
   
-  
-## Instruction steps by steps
-
+## Instruction
 ### Step1: 
 If you have `pyenv-virtualenv` 
 ```
@@ -21,9 +19,8 @@ $ source bgk/bin/activate
 ```
 if you don't
 ```
-$ pip install -r requirements.txt
+$ pip install -r requirements.txt  
 ```
-
 ### Step2:
 Enter your gmail account and password on main.py  
 ("admin" is the sender's name)
@@ -44,5 +41,6 @@ $ python3 mongo_setup.py
 ```
 $ python3 main.py
 ```
+
 
 
