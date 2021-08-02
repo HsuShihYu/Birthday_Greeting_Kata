@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  mysql8: # 自訂的service
+    image: mysql:8
+    container_name: mysql8
+    volumes:
+      - ~/mysql-docker-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345
+      MYSQL_DATABASE: mydb
+    ports:
+      - "3306:3306"
